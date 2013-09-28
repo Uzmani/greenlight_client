@@ -42,12 +42,12 @@ function pullProfile() {
     //get json object
     $.support.cors = true;
     $.ajax({
-           url: 'http://search.twitter.com/search.json?q=bacon',
+           url: 'http://localhost:3000',
            type: 'GET',
            //crossDomain: true,
            dataType: 'JSONP',
            success: function(data){
-           alert(data);
+           $('#photo').append('<img src="https://graph.facebook.com/'+data.uid+'/picture?type=large"></img><a href="http://hot.com/">hot or not</a>');
             }
            })
 }
