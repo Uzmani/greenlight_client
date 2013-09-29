@@ -46,8 +46,10 @@ function pullProfile() {
            //crossDomain: true,
            dataType: 'JSONP',
            success: function(data){
-           $('#photo').append('<img src="https://graph.facebook.com/'+data.uid+'/picture?type=large"></img><br><a href="http://hot.com/">hot or not</a>');
+           $('#profile').append('<img src="https://graph.facebook.com/'+data.uid+'/picture?type=large"></img><br><a href="http://hot.com/">hot or not</a>');
             }
            })
 }
+
+
 
