@@ -1,45 +1,35 @@
-
+// NOTE: VIEWS ONLY WORK IN iPHONE 6.1 SIMULATOR
 
 function ProfileView(model) {
     this.el = "<div></div>";
     this.model = model ;
 }
 
-ProfileView.prototype.render = function() {
-    this.el="<div>"+ model.name + "</div>";
+ProfileView.prototype.render = function(model) {
+    this.el="<div>"+ model.name + '<br><img src="https://graph.facebook.com/'+model.uid+'/picture?type=large"></img>'+ '"</div>";
     return this.el;
 }
 
-profile = new Profile({name:'Sam'});
-profileView = new ProfileView(profile);
-profileView.render();
-$("#profile").html(profileView.render());
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
                           document.getElementById("seeProfile").
-                          addEventListener("click", pullProfile, false);
+                          addEventListener("click", renderProfile, false);
                           }, false);
 
-function pullProfile() {
-    //get json object
-    alert("hi")
+function renderProfile() {
     $.support.cors = true;
     $.ajax({
-           url: 'http://greenlightme.herokuapp.com/users/1',
+           url: 'http://greenlightme.herokuapp.com/users/3',
            type: 'GET',
-           //crossDomain: true,
            dataType: 'JSONP',
-           success:
-           function(data){
+           success: function(data){
            profile = new Profile(data);
-           alert(profile.name);
-//           $('#profile').append('<img src="https://graph.facebook.com/'+data.uid+'/picture?type=large"></img><br><a href="http://hot.com/">hot or not</a>');
+           profileView = new ProfileView(profile);
+           console.log(data);
+           $("#profile").append(profileView.render(data));
+
            }
-           })
+    })
 }
-
-
-
-
-
