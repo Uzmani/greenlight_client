@@ -33,8 +33,7 @@ var app = {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-                          alert("We really do think that you are the best.");
-                          document.getElementById("likeMe").
+                          document.getElementById("startMatching").
                           addEventListener("click", pullProfile, false);
                           }, false);
 
@@ -42,12 +41,12 @@ function pullProfile() {
     //get json object
     $.support.cors = true;
     $.ajax({
-           url: 'http://localhost:3000',
+           url: 'http://greenlightme.herokuapp.com/users/1',
            type: 'GET',
            //crossDomain: true,
            dataType: 'JSONP',
            success: function(data){
-           $('#photo').append('<img src="https://graph.facebook.com/'+data.uid+'/picture?type=large"></img><a href="http://hot.com/">hot or not</a>');
+           $('#photo').append('<img src="https://graph.facebook.com/'+data.uid+'/picture?type=large"></img><br><a href="http://hot.com/">hot or not</a>');
             }
            })
 }
